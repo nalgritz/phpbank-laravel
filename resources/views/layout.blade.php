@@ -1,49 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PHP Bank</title>
-        <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
+    <title>PHP Bank</title>
+    <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
-        @yield('header')
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
+    <!-- Styles -->
+    @yield('header')
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">PHP Bank</h1>
+      <h3 class="links">
+        <a href="/">Home</a>
+      </h3>
+      @yield('content')
+    </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    PHP Bank
-                </div>
+      @yield('footer')
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-        @yield('content')
-
-        @yield('footer')
-
-    </body>
+  </body>
 </html>

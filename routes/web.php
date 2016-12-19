@@ -12,8 +12,10 @@
 */
 
 // index
-Route::get('/users', 'UsersController@index');
-Route::get('users/{id}', 'UsersController@show');
+Route::get('/', 'UsersController@index');
+Route::get('users/{user}', 'UsersController@show');
+
+Route::post('users/{user}/transactions', 'TransactionsController@save');
 
 /*
 // Sample routes & controller functions

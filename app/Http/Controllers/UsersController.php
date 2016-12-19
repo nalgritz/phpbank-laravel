@@ -16,12 +16,16 @@ class UsersController extends Controller
     // Find one user by its name
     // return view('user.index', ['users' => $users]);
     // $users = User::all();
+    // return view('users.index', compact('users'));
 
   public function index(Request $request) {
     $name = $request->input('name');
     $users = User::where('name', $name)->get();
-
-    return view('users.index', compact('users'));
+    if ( $name ) {
+      return redirect()->action('UsersController@show', ['id' => $users[0]->id]);
+    } else {
+      return view('users.index', compact('users'));
+    }
   }
 
   // // 1st Approach to show specific data
