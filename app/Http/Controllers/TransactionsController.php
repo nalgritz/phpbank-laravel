@@ -15,6 +15,11 @@ class TransactionsController extends Controller
     $transaction->amount = $request->sign.$request->amount;
     $transaction->remarks = $request->remarks;
 
+    // Update account balance
+    $user->balance += $transaction->amount;
+    $user->update();
+
+    // Save transaction
     $user->transactions()->save($transaction);
 
     return back();
