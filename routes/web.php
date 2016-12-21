@@ -11,8 +11,11 @@
 |
 */
 
-// index
 Route::get('/', 'UsersController@index');
+
+Route::get('users/new', 'UsersController@new');
+Route::post('users/new', 'UsersController@create');
+
 Route::get('users/{user}', 'UsersController@show');
 
 Route::post('users/{user}/transactions', 'TransactionsController@save');

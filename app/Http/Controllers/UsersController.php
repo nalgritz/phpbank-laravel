@@ -33,9 +33,33 @@ class UsersController extends Controller
     $user = User::find($user);
     return view('users.show', compact('user'));
   }
-
   // 2nd Approach to show specific data => Route Model binding
   // In web.php (route) show route, got to set the variable name as same as argument in show function & return value.
   // Laravel would automatically show the item
   // User foobar as argument to show the difference
+
+
+  public function new() {
+    return view('users.create');
+  }
+
+  public function create(Request $request) {
+    // $user = User::firstOrNew(['name' => $request->name ]);
+    $validator = $this->validate($request, [
+      'name' => 'unique:users'
+      ]);
+
+    $user = new User;
+    $user->name = $request->name;
+    $user->balance = $request->balance;
+    $user->is_active = true;
+    $user->save();
+
+    if ( $user ) {
+      return redirect()->action('UsersController@show', ['id' => $user->id]);
+    } else {
+      return back();
+    }
+
+  }
 }

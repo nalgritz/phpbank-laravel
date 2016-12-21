@@ -51,4 +51,7 @@
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
+  <hr>
+  <a class="btn btn-default" href="users/new">Create an account</a>
+
 @stop
