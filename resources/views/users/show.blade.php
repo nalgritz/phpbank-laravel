@@ -52,6 +52,6 @@
   </form>
 
   <hr>
-  <a class="btn btn-default" href="users/new">Create an account</a>
+  <a class="btn btn-default" href="/">Log Out</a>
 
 @stop

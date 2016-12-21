@@ -19,6 +19,12 @@ class UsersController extends Controller
     // return view('users.index', compact('users'));
 
   public function index(Request $request) {
+
+    function init() {
+      $users = null;
+      $request = null;
+    }
+
     $name = $request->input('name');
     $users = User::where('name', $name)->get();
     if ( $name ) {
@@ -26,6 +32,8 @@ class UsersController extends Controller
     } else {
       return view('users.index', compact('users'));
     }
+
+    init();
   }
 
   // // 1st Approach to show specific data
