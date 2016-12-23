@@ -10,6 +10,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
   <!-- Show Errors if any -->
   @if( count($errors) )
     <div class="error-log bg-danger">

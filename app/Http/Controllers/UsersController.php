@@ -21,19 +21,26 @@ class UsersController extends Controller
   public function index(Request $request) {
 
     function init() {
-      $users = null;
-      $request = [];
+      $users = [];
+      $request = null;
     }
+    init();
 
     $name = $request->name;
+    if ( $name ) {
+      $this->validate($request, [
+        'name' => 'required|exists:users'
+      ]);
+    }
+
     $users = User::where('name', $name)->get();
+
     if ( $name ) {
       return redirect()->action('UsersController@show', ['id' => $users[0]->id]);
     } else {
       return view('users.index', compact('users'));
-    }
+    };
 
-    init();
   }
 
   // // 1st Approach to show specific data
