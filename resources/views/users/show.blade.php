@@ -25,7 +25,7 @@
 
   <hr>
   <form method="POST" action="/users/{{ $user->id }}/transactions" class="form-inline">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    {{ csrf_field() }}
     <div class="form-group">
       <label for="UserName">Username</label>
       <input id="UserName" type="text" name="name" class="form-control" value="{{$user->name}}" readonly>
@@ -41,15 +41,23 @@
       <label for="Amount">Amount</label>
       <div class="input-group">
         <div class="input-group-addon">$</div>
-        <input id="amount" type="number" name="amount" class="form-control" placeholder="Amount">
+        <input id="amount" type="number" name="amount" class="form-control" placeholder="Amount" value="{{ old('body') }}">
       </div>
     </div>
     <div class="form-group">
       <label for="Remarks">Remarks</label>
-      <input id="remarks" type="text" name="remarks" class="form-control" placeholder="remarks">
+      <input id="remarks" type="text" name="remarks" class="form-control" placeholder="remarks" value="{{ old('body') }}">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+  <!-- Show Errors if any -->
+  @if( count($errors) )
+  <div class="error-log bg-danger">
+    @foreach($errors->all() as $error)
+      <div class="error text-danger">{{ $error }}</div>
+    @endforeach
+  </div>
+  @endif
 
   <hr>
   <a class="btn btn-default" href="/">Log Out</a>

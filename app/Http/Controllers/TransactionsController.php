@@ -10,6 +10,12 @@ class TransactionsController extends Controller
 {
   public function save(Request $request, User $user)
   {
+    $this->validate($request, [
+      'name' => 'present',
+      'amount' => 'required|integer',
+      'remarks' => 'string|max:15'
+      ]);
+
     $transaction = new Transaction;
 
     $transaction->amount = $request->sign.$request->amount;

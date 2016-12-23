@@ -7688,4 +7688,13 @@ button.close {
   }
 }
 
+.error-log {
+  border-radius: 5px;
+}
+
+.error-log .error {
+  font-size: 120%;
+  padding: 1%;
+}
+
 /*# sourceMappingURL=app.css.map */

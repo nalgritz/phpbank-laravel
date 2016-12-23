@@ -16,7 +16,7 @@ class CreateUserTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->decimal('balance', 65, 9);
+            $table->decimal('balance', 65, 9)->unsigned();
             $table->boolean('is_active');
             $table->timestamps();
         });

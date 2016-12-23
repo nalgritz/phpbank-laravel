@@ -22,10 +22,10 @@ class UsersController extends Controller
 
     function init() {
       $users = null;
-      $request = null;
+      $request = [];
     }
 
-    $name = $request->input('name');
+    $name = $request->name;
     $users = User::where('name', $name)->get();
     if ( $name ) {
       return redirect()->action('UsersController@show', ['id' => $users[0]->id]);
@@ -53,8 +53,9 @@ class UsersController extends Controller
 
   public function create(Request $request) {
     // $user = User::firstOrNew(['name' => $request->name ]);
-    $validator = $this->validate($request, [
-      'name' => 'unique:users'
+    $this->validate($request, [
+      'name' => 'required|unique:users,name',
+      'balance' => 'required'
       ]);
 
     $user = new User;
